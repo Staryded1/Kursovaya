@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/sergik"
+
+    tools:context=".Profile">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_profile_image"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:src="@drawable/userprofile"
+        android:contentDescription=""
+        app:civ_border_width="2dp"
+        android:layout_below="@id/username"
+        app:civ_border_color="@color/blue"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:id="@+id/profile_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Профиль"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/username"
+        android:hint="Здравствуйте, имя!"
+        android:layout_below="@id/profile_text"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:id="@+id/logout_btn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/logout" />
+
+    <ImageView
+        android:id="@+id/settings_btn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/setting" />
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/user_profile_image"
+        android:background="@color/blue"
+        android:layout_marginTop="10dp"/>
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation_panel"
+        android:layout_width="wrap_content"
+        android:layout_height="72dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/navigationmenu_btn"
+        android:foregroundGravity="bottom"
+        app:menu="@menu/bottom_navigation_menu" />
+
+</RelativeLayout>

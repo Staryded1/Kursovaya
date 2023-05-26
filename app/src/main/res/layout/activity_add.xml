@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".Admin.AddActivity">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <ImageView
+            android:id="@+id/select_shoes_image"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:src="@drawable/galik"
+            android:scaleType="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            />
+
+        <TextView
+            android:id="@+id/category_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:hint="Категория"
+            android:layout_marginTop="8dp"
+            android:layout_centerHorizontal="true"
+
+            />
+
+        <EditText
+            android:id="@+id/shoes_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/select_shoes_image"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/input_design"
+            android:hint="Наименование модели"
+            android:inputType="textMultiLine"
+            android:padding="15dp" />
+
+        <EditText
+            android:id="@+id/description_shoes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/shoes_name"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/input_design"
+            android:hint="Описание обуви"
+            android:inputType="textMultiLine"
+            android:padding="15dp" />
+
+        <EditText
+            android:id="@+id/shoes_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/description_shoes"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/input_design"
+            android:hint="Размер обуви"
+            android:inputType="textMultiLine"
+            android:padding="15dp" />
+
+        <EditText
+            android:id="@+id/number_shoes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/shoes_size"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/input_design"
+            android:hint="Трек номер"
+            android:inputType="textMultiLine"
+            android:padding="15dp" />
+
+        <EditText
+            android:id="@+id/shoes_money"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/number_shoes"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/input_design"
+            android:hint="Цена"
+            android:inputType="textMultiLine"
+            android:padding="15dp" />
+
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_addNewProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/button"
+            android:text="Добавить модель"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_below="@id/shoes_money"/>
+
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:background="@drawable/arrow_left" />
+
+    </RelativeLayout>
+
+</ScrollView>

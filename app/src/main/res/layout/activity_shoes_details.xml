@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/arrow_left"/>
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Информация о кроссовках"
+            android:textAlignment="center"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/shoes_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                tools:text="Название модели"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/shoes_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    tools:src="@tools:sample/avatars" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/shoes_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                tools:text="Здесь описание обуви"
+                android:padding="8dp"
+                android:background="@drawable/input_design"/>
+
+            <TextView
+                android:id="@+id/shoes_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp"
+                tools:text="Здесь размер"/>
+
+            <TextView
+                android:id="@+id/shoes_money"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                tools:text="Здесь цена"/>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.rey.material.widget.Button
+                    android:id="@+id/shoes_url"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/button"
+                    android:text="Перейти к оплате"
+                    android:textAllCaps="false"
+                    android:textSize="15dp" />
+
+                <com.rey.material.widget.Button
+                    android:id="@+id/shoes_korzina"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/button"
+                    android:text="Перейти в корзину"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textAllCaps="false"
+                    android:textSize="15dp" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

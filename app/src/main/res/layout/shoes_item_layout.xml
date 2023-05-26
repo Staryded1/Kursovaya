@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="15dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    app:cardElevation="15dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/sergik"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/like_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/like" />
+
+        <TextView
+            android:id="@+id/shoes_name_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Название модели"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:padding="5dp"/>
+
+        <ImageView
+            android:id="@+id/shoes_image_list"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/shoes_name_list"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="2dp"/>
+
+        <TextView
+            android:id="@+id/shoes_size_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Размер"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:layout_below="@+id/shoes_image_list"
+            android:textAllCaps="false"
+            android:padding="5dp"/>
+    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

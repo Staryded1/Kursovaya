@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Kursovaya</string>
+    <string name="navigationMenu_category">Категории</string>
+    <string name="navigationMenu_korzina">Корзина</string>
+    <string name="navigationMenu_profile">Профиль</string>
+    <string name="products_model">Модель:</string>
+    <string name="products_money">Цена:</string>
+    <string name="korzinatext">Добавить в корзину</string>
+
+</resources>
