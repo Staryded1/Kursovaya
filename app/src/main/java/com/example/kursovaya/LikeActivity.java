@@ -54,7 +54,7 @@ public class LikeActivity extends AppCompatActivity {
         BackBtnFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent backtoProf = new Intent(LikeActivity.this, Profile.class);
+                Intent backtoProf = new Intent(LikeActivity.this, CategoryShoes.class);
                 startActivity(backtoProf);
             }
         });
@@ -67,16 +67,19 @@ public class LikeActivity extends AppCompatActivity {
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         DatabaseReference likeRef = FirebaseDatabase.getInstance().getReference().child("Like");
-        Query favouritePlacesQuery = likeRef.orderByKey().startAt(userId+"_").endAt(userId+ "\uf8ff");
+        Query likeShoesQuery = likeRef.orderByKey().startAt(userId+"_").endAt(userId+ "\uf8ff");
 
-        favouritePlacesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+        likeShoesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                likeShoesList.clear();
                 for (DataSnapshot likeSnapshot : dataSnapshot.getChildren()) {
-                    Likes likeShoes = likeSnapshot.getValue(Likes.class);
-                    shoesId = likeShoes.getShoesId();
-                    category = likeShoes.getCategory();
-                    getShoesDetails(shoesId, category);
+                    Likes like = likeSnapshot.getValue(Likes.class);
+                    if (like != null) {
+                        String shoesId = like.getShoesId();
+                        String category = like.getCategory();
+                        getShoesDetails(shoesId, category);
+                    }
                 }
             }
 

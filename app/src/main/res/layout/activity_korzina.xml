@@ -7,6 +7,14 @@
     android:background="@color/sergik"
     tools:context=".Korzina">
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/back_btn_like"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/arrow_left"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"/>
+
 
     <TextView
         android:id="@+id/textview"
@@ -15,22 +23,35 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="165dp"
+        android:layout_marginStart="96dp"
+        android:gravity="center"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="94dp"
         android:text="Корзина"
         android:textSize="40dp" />
 
-    <ListView
-        android:id="@+id/korzina_list"
-        android:layout_width="326dp"
-        android:layout_height="542dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_like"
+        android:layout_width="match_parent"
+        android:layout_height="356dp"
+
         android:layout_below="@+id/textview"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="23dp"
+        android:layout_marginBottom="179dp"
+        android:scrollbars="vertical" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation_panel"
+        android:layout_width="wrap_content"
+        android:layout_height="72dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="45dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="70dp" />
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/navigationmenu_btn"
+        android:foregroundGravity="bottom"
+        app:menu="@menu/bottom_navigation_menu" />
 </RelativeLayout>

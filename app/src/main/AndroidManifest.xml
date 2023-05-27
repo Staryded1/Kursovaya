@@ -25,7 +25,7 @@
             android:name=".ShoesDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".Like"
+            android:name=".LikeActivity"
             android:exported="false" />
         <activity
             android:name=".Shoes.ShoesActivity"

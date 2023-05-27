@@ -193,7 +193,7 @@ public class ShoesActivity extends AppCompatActivity {
         if (isLike) {
             likeIcon.setImageResource(R.drawable.like);
         } else {
-            likeIcon.setImageResource(R.drawable.like);
+            likeIcon.setImageResource(R.drawable.unlike);
         }
     }
 

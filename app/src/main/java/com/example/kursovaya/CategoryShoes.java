@@ -1,9 +1,11 @@
 package com.example.kursovaya;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -16,6 +18,7 @@ public class CategoryShoes extends AppCompatActivity {
     private ImageView MujCategory;
     private ImageView JenCategory;
     private ImageView DetiCategory;
+    private  ImageView Like;
     private BottomNavigationView NavigationMenu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,34 @@ public class CategoryShoes extends AppCompatActivity {
             }
         });
 
+       Like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent resetPassIntent = new Intent(CategoryShoes.this, LikeActivity.class);
+                startActivity(resetPassIntent);
+            }
+        });
+
+        NavigationMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int ItemId = item.getItemId();
+                if (ItemId == R.id.navigation_category)
+                {
+
+                }
+                else if (ItemId == R.id.navigation_korzina)
+                {
+                    startActivity(new Intent(CategoryShoes.this, Korzina.class));
+                }
+                else if (ItemId == R.id.navigation_profile)
+                {
+                    startActivity(new Intent(CategoryShoes.this, Profile.class));
+                }
+                return true;
+            }
+        });
+
     }
 
     private void init()
@@ -58,6 +89,7 @@ public class CategoryShoes extends AppCompatActivity {
         MujCategory = (ImageView) findViewById(R.id.tapokmen);
         JenCategory = (ImageView) findViewById(R.id.tapokjen);
         DetiCategory = (ImageView) findViewById(R.id.tapokdeti);
+        Like = (ImageView)findViewById(R.id.like_btn) ;
         NavigationMenu = (BottomNavigationView) findViewById(R.id.navigation_panel);
 
     }

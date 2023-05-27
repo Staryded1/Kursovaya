@@ -83,6 +83,14 @@ public class ShoesDetailsActivity extends AppCompatActivity {
                 startActivity(backIntent);
             }
         });
+
+        shoesKorzina.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent resetPassIntent = new Intent(ShoesDetailsActivity.this, Korzina.class);
+                startActivity(resetPassIntent);
+            }
+        });
     }
 
     private void init() {

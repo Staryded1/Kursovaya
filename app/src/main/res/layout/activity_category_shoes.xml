@@ -26,15 +26,17 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/arrow_left"/>
 
-<!--    <ImageView-->
-<!--        android:id="@+id/search_btn"-->
-<!--        android:layout_width="20dp"-->
-<!--        android:layout_height="20dp"-->
-<!--        android:layout_marginLeft="30dp"-->
-<!--        android:layout_marginTop="25dp"-->
-<!--        android:background="@drawable/search"-->
-<!--        android:layout_toEndOf="@id/choose_the_category"/>-->
 
+    <ImageView
+        android:id="@+id/like_btn"
+        android:layout_width="25dp"
+        android:layout_height="26dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="118dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="21dp"
+        android:layout_toEndOf="@id/choose_the_category"
+        android:background="@drawable/like" />
 
     <ImageView
         android:id="@+id/tapokmen"
@@ -60,7 +62,7 @@
         android:layout_marginEnd="71dp"
         android:layout_marginBottom="-28dp"
         android:gravity="center"
-        android:text="Мужщинам"
+        android:text="Мужчинам"
         android:textColor="@android:color/black"
         android:textSize="17dp"
         android:textStyle="bold" />
