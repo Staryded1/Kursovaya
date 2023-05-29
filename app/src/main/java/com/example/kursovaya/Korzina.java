@@ -37,7 +37,7 @@ public class Korzina extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     private BottomNavigationView NavigationMenu;
-    DatabaseReference LikeRef, ShoesRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +46,7 @@ public class Korzina extends AppCompatActivity {
 
         init();
 
-        likeShoes.setLayoutManager(new LinearLayoutManager(this));
-        likeShoesAdapter = new LikeShoesAdapter(likeShoesList, shoe -> {
-            LikeRef.child(currentUserID + "_" + shoesId).removeValue();
-            likeShoesList.remove(shoe);
-            likeShoesAdapter.notifyDataSetChanged();
-        }, currentUserID);
-        likeShoes.setAdapter(likeShoesAdapter);
+
 
         BackBtnFav.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,33 +55,8 @@ public class Korzina extends AppCompatActivity {
                 startActivity(backtoProf);
             }
         });
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
 
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-        DatabaseReference likeRef = FirebaseDatabase.getInstance().getReference().child("Like");
-        Query likeShoesQuery = likeRef.orderByKey().startAt(userId+"_").endAt(userId+ "\uf8ff");
-
-        likeShoesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot likeSnapshot : dataSnapshot.getChildren()) {
-                    Likes likeShoes = likeSnapshot.getValue(Likes.class);
-                    shoesId = likeShoes.getShoesId();
-                    category = likeShoes.getCategory();
-                    getShoesDetails(shoesId, category);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Обработка ошибки
-            }
-        });
 
         NavigationMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -111,35 +80,16 @@ public class Korzina extends AppCompatActivity {
 
     }
 
-    private void getShoesDetails(String shoesId, String category) {
-        DatabaseReference shoesRef = FirebaseDatabase.getInstance().getReference().child("Shoes").child(category);
 
-        shoesRef.child(shoesId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Shoe shoe = dataSnapshot.getValue(Shoe.class);
-                if (shoe != null) {
-                    likeShoesList.add(shoe);
-                    likeShoesAdapter.notifyDataSetChanged();
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
 
     private void init() {
         likeShoes = findViewById(R.id.recycler_like);
         BackBtnFav = findViewById(R.id.back_btn_like);
 
-        mAuth = FirebaseAuth.getInstance();
-        currentUserID = mAuth.getCurrentUser().getUid();
-        LikeRef = FirebaseDatabase.getInstance().getReference().child("Like");
 
-        ShoesRef = FirebaseDatabase.getInstance().getReference().child("Shoes");
+
+
         NavigationMenu = (BottomNavigationView) findViewById(R.id.navigation_panel);
     }
 }

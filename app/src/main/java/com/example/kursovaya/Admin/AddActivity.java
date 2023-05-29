@@ -131,7 +131,7 @@ public class AddActivity extends AppCompatActivity {
     private void StoreShoesInformation()
     {
 
-        loadingBar.setTitle("Создание нового места");
+        loadingBar.setTitle("Добавление нового товара");
         loadingBar.setMessage("Пожалуйста, подождите...");
         loadingBar.setCanceledOnTouchOutside(false);
         loadingBar.show();
@@ -169,7 +169,7 @@ public class AddActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             downloadImageUrl = task.getResult().toString();
                             Toast.makeText(AddActivity.this, "Изображение сохранено", Toast.LENGTH_SHORT).show();
-                            SavePlaceInfoToDatabase();
+                            SaveShoesInfoToDatabase();
                         }
                     }
                 });
@@ -177,7 +177,7 @@ public class AddActivity extends AppCompatActivity {
         });
     }
 
-    private void SavePlaceInfoToDatabase()
+    private void SaveShoesInfoToDatabase()
     {
         HashMap<String, Object> shoesData = new HashMap<>();
 

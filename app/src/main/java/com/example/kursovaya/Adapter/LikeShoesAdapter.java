@@ -46,7 +46,7 @@ public class LikeShoesAdapter extends RecyclerView.Adapter<LikeShoesAdapter.Like
 
         Picasso.get().load(shoes.getImage()).into(holder.shoesImage);
 
-        int likeIcon = shoes.isLike() ? R.drawable.like : R.drawable.like;
+        int likeIcon = shoes.isLike() ? R.drawable.unlike : R.drawable.like;
         Picasso.get().load(likeIcon).into(holder.likeIcon);
     }
 
@@ -55,7 +55,7 @@ public class LikeShoesAdapter extends RecyclerView.Adapter<LikeShoesAdapter.Like
         return likeShoesList.size();
     }
 
-    public void removeFavourite(String userId, String likeId) {
+    public void removeLike(String userId, String likeId) {
         DatabaseReference likeRef = FirebaseDatabase.getInstance().getReference().child("Like");
         String likeKey = userId + "_" + likeId;
         likeRef.child(likeKey).removeValue();

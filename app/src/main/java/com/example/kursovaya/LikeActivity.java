@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
 
 import com.example.kursovaya.Adapter.LikeShoesAdapter;
@@ -25,13 +26,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class LikeActivity extends AppCompatActivity {
 
     private RecyclerView likeShoes;
     private AppCompatButton BackBtnFav;
     private List<Shoe> likeShoesList = new ArrayList<>();
     private LikeShoesAdapter likeShoesAdapter;
-
     private String currentUserID, shoesId, category;
     private FirebaseAuth mAuth;
     DatabaseReference LikeRef, ShoesRef;
@@ -40,9 +41,7 @@ public class LikeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_like);
-
         init();
-
         likeShoes.setLayoutManager(new LinearLayoutManager(this));
         likeShoesAdapter = new LikeShoesAdapter(likeShoesList, shoe -> {
             LikeRef.child(currentUserID + "_" + shoesId).removeValue();
@@ -50,7 +49,6 @@ public class LikeActivity extends AppCompatActivity {
             likeShoesAdapter.notifyDataSetChanged();
         }, currentUserID);
         likeShoes.setAdapter(likeShoesAdapter);
-
         BackBtnFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,22 +61,24 @@ public class LikeActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
         DatabaseReference likeRef = FirebaseDatabase.getInstance().getReference().child("Like");
-        Query likeShoesQuery = likeRef.orderByKey().startAt(userId+"_").endAt(userId+ "\uf8ff");
+        Query likeShoesQuery = likeRef.orderByKey().startAt(userId + "_").endAt(userId + "\uf8ff");
 
-        likeShoesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+        LikeRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 likeShoesList.clear();
                 for (DataSnapshot likeSnapshot : dataSnapshot.getChildren()) {
-                    Likes like = likeSnapshot.getValue(Likes.class);
-                    if (like != null) {
-                        String shoesId = like.getShoesId();
-                        String category = like.getCategory();
-                        getShoesDetails(shoesId, category);
+                    Likes likeShoes = likeSnapshot.getValue(Likes.class);
+                    if (likeShoes != null) {
+                        shoesId = likeShoes.getShoesId();
+                        category = likeShoes.getCategory();
+                        if(shoesId !=null && category !=null){
+                        getShoesDetails(shoesId, category);}
+                        else{
+
+                            Log.e("LikeActivity", "shoesId or category is null. shoesId: " + shoesId + ", category: " + category);}
                     }
                 }
             }
@@ -88,18 +88,17 @@ public class LikeActivity extends AppCompatActivity {
                 // Обработка ошибки
             }
         });
+   }
 
-    }
 
     private void getShoesDetails(String shoesId, String category) {
         DatabaseReference shoesRef = FirebaseDatabase.getInstance().getReference().child("Shoes").child(category);
-
         shoesRef.child(shoesId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Shoe shoe = dataSnapshot.getValue(Shoe.class);
-                if (shoe != null) {
-                    likeShoesList.add(shoe);
+                Shoe shoes = dataSnapshot.getValue(Shoe.class);
+                if (shoes != null) {
+                    likeShoesList.add(shoes);
                     likeShoesAdapter.notifyDataSetChanged();
                 }
             }
@@ -111,16 +110,15 @@ public class LikeActivity extends AppCompatActivity {
         });
     }
 
+
+
+
     private void init() {
         likeShoes = findViewById(R.id.recycler_like);
         BackBtnFav = findViewById(R.id.back_btn_like);
-
         mAuth = FirebaseAuth.getInstance();
         currentUserID = mAuth.getCurrentUser().getUid();
         LikeRef = FirebaseDatabase.getInstance().getReference().child("Like");
-
         ShoesRef = FirebaseDatabase.getInstance().getReference().child("Shoes");
     }
 }
-
-

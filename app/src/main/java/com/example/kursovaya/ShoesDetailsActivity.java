@@ -37,9 +37,9 @@ public class ShoesDetailsActivity extends AppCompatActivity {
 
         shoesID = getIntent().getStringExtra("ShoesID");
 
-        DatabaseReference placeRef = FirebaseDatabase.getInstance().getReference().child("Shoes").child(categoryName).child(shoesID);
+        DatabaseReference shoesRef = FirebaseDatabase.getInstance().getReference().child("Shoes").child(categoryName).child(shoesID);
 
-        placeRef.addValueEventListener(new ValueEventListener() {
+        shoesRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
@@ -67,6 +67,9 @@ public class ShoesDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (shoesURLTxt != null && !shoesURLTxt.toString().isEmpty()) {
+                    String bankUrl = "https://web7-new.online.sberbank.ru/main";
+                    shoesURLTxt = Uri.parse(bankUrl);
+
                     Intent browserIntent = new Intent(Intent.ACTION_VIEW, shoesURLTxt);
                     startActivity(browserIntent);
                 } else {
@@ -87,8 +90,10 @@ public class ShoesDetailsActivity extends AppCompatActivity {
         shoesKorzina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent resetPassIntent = new Intent(ShoesDetailsActivity.this, Korzina.class);
-                startActivity(resetPassIntent);
+                Intent korzinaIntent = new Intent(ShoesDetailsActivity.this, Korzina.class);
+                korzinaIntent.putExtra("category", categoryName);
+                korzinaIntent.putExtra("ShoesID", shoesID);
+                startActivity(korzinaIntent);
             }
         });
     }

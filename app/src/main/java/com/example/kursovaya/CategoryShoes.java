@@ -54,11 +54,11 @@ public class CategoryShoes extends AppCompatActivity {
             }
         });
 
-       Like.setOnClickListener(new View.OnClickListener() {
+        Like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent resetPassIntent = new Intent(CategoryShoes.this, LikeActivity.class);
-                startActivity(resetPassIntent);
+                Intent toFavouriteIntent = new Intent(CategoryShoes.this, LikeActivity.class);
+                startActivity(toFavouriteIntent);
             }
         });
 

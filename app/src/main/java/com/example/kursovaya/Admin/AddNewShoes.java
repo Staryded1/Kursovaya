@@ -35,27 +35,27 @@ public class AddNewShoes extends AppCompatActivity {
         mujCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent museumtheatreIntent = new Intent(AddNewShoes.this, AddActivity.class);
-                museumtheatreIntent.putExtra("category", "Muj");
-                startActivity(museumtheatreIntent);
+                Intent mujIntent = new Intent(AddNewShoes.this, AddActivity.class);
+                mujIntent.putExtra("category", "Muj");
+                startActivity(mujIntent);
             }
         });
 
         jenCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent cinemaIntent = new Intent(AddNewShoes.this, AddActivity.class);
-                cinemaIntent.putExtra("category", "Jen");
-                startActivity(cinemaIntent);
+                Intent jenIntent = new Intent(AddNewShoes.this, AddActivity.class);
+                jenIntent.putExtra("category", "Jen");
+                startActivity(jenIntent);
             }
         });
 
         detiCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent restarauntIntent = new Intent(AddNewShoes.this, AddActivity.class);
-                restarauntIntent.putExtra("category", "Deti");
-                startActivity(restarauntIntent);
+                Intent detiIntent = new Intent(AddNewShoes.this, AddActivity.class);
+                detiIntent.putExtra("category", "Deti");
+                startActivity(detiIntent);
             }
         });
 

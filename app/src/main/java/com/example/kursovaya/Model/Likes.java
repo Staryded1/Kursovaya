@@ -10,7 +10,7 @@ public class Likes {
 
     }
 
-    public Likes(String userId, String shoesId, String userIud_ShoesID) {
+    public Likes(String userId, String shoesId, String category) {
         this.userId = userId;
         this.shoesId = shoesId;
         this.userIud_ShoesID = userIud_ShoesID;

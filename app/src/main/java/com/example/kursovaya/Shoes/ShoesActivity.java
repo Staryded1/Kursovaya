@@ -44,7 +44,7 @@ public class ShoesActivity extends AppCompatActivity {
     private RecyclerView ShoesList;
     RecyclerView.LayoutManager layoutManager;
 
-    DatabaseReference ShoesRef, LikeRef;
+    DatabaseReference ShoesRef;
     private TextView CategoryShoesTxt;
     private ImageView BackBtn;
     private String CategoryShoesTxtSet;
@@ -69,26 +69,26 @@ public class ShoesActivity extends AppCompatActivity {
             }
         });
 
-        loadFavouritePlaces();
+        loadLikeShoes();
 
 
     }
 
-    private void loadFavouritePlaces() {
+    private void loadLikeShoes() {
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference favouritesRef = FirebaseDatabase.getInstance().getReference().child("Favourites");
-        Query favouritePlacesQuery = favouritesRef.orderByKey().startAt(userId+"_").endAt(userId+ "\uf8ff");
+        DatabaseReference LikeRef = FirebaseDatabase.getInstance().getReference().child("Like");
+        Query likeShoesQuery = LikeRef.orderByKey().startAt(userId+"_").endAt(userId+ "\uf8ff");
 
-        favouritePlacesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+        likeShoesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot favouriteSnapshot : dataSnapshot.getChildren()) {
-                    Likes like = favouriteSnapshot.getValue(Likes.class);
+                for (DataSnapshot likeSnapshot : dataSnapshot.getChildren()) {
+                    Likes like = likeSnapshot.getValue(Likes.class);
                     if (like != null) {
                         likeShoes.put(like.getShoesId(), true);
                     }
                 }
-                loadPlaces();
+                loadShoes();
             }
 
             @Override
@@ -101,7 +101,7 @@ public class ShoesActivity extends AppCompatActivity {
     private void checkCategoy() {
         if (categoryName.equals("Muj"))
         {
-            CategoryShoesTxtSet = "Мужщинам";
+            CategoryShoesTxtSet = "Мужчинам";
             CategoryShoesTxt.setText(CategoryShoesTxtSet);
         }
         else if(categoryName.equals("Jen"))
@@ -119,7 +119,7 @@ public class ShoesActivity extends AppCompatActivity {
 
 
 
-    protected void  loadPlaces()
+    protected void  loadShoes()
     {
         super.onStart();
 
@@ -137,7 +137,7 @@ public class ShoesActivity extends AppCompatActivity {
                 if (likeShoes.containsKey(model.getShoesID())) {
                     boolean isLike = likeShoes.get(model.getShoesID());
                     model.setLike(isLike);
-                    updateFavouriteIcon(holder.likeIcon, isLike);
+                    updateLikeIcon(holder.likeIcon, isLike);
                 }
 
                 holder.likeIcon.setOnClickListener(new View.OnClickListener() {
@@ -146,7 +146,7 @@ public class ShoesActivity extends AppCompatActivity {
                         boolean isLike = model.isLike();
                         model.setLike(!isLike);
                         likeShoes.put(model.getShoesID(), !isLike);
-                        updateFavouriteIcon(holder.likeIcon, !isLike);
+                        updateLikeIcon(holder.likeIcon, !isLike);
 
                         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                         String shoesID = model.getShoesID();
@@ -189,11 +189,11 @@ public class ShoesActivity extends AppCompatActivity {
         adapter.startListening();
     }
 
-    private void updateFavouriteIcon(ImageView likeIcon, boolean isLike) {
+    private void updateLikeIcon(ImageView likeIcon, boolean isLike) {
         if (isLike) {
-            likeIcon.setImageResource(R.drawable.like);
-        } else {
             likeIcon.setImageResource(R.drawable.unlike);
+        } else {
+            likeIcon.setImageResource(R.drawable.like);
         }
     }
 
